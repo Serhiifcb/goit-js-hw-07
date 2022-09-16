@@ -25,15 +25,17 @@ function makeLightbox(event) {
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
       <img src="${event.target.dataset.source}">
-  `);
+  `
+  );
   instance.show();
   function onEscClose(event) {
     if (event.code === "Escape") {
       instance.close();
+      document.removeEventListener("keydown", onEscClose);
     }
-    document.removeEventListener("keydown", onEscClose);
   }
   document.addEventListener("keydown", onEscClose);
 }
