@@ -29,13 +29,11 @@ function makeLightbox(event) {
       <img src="${event.target.dataset.source}">
   `);
   instance.show();
-  console.log(event.target.dataset.source);
-  document.addEventListener("keydown", (event) => {
-    console.log("code: ", event.code);
+  function onEscClose(event) {
     if (event.code === "Escape") {
-      return;
+      instance.close();
     }
-  });
+    document.removeEventListener("keydown", onEscClose);
+  }
+  document.addEventListener("keydown", onEscClose);
 }
-
-// console.log(galleryItems);
