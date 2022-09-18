@@ -18,7 +18,7 @@ function makeLightbox(event) {
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  let lightbox = new SimpleLightbox(".gallery a", {
+  const lightbox = new SimpleLightbox(".gallery a", {
     captions: true,
     captionSelector: "img",
     captionType: "attr",
