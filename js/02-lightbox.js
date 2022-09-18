@@ -12,22 +12,18 @@ function createGallery() {
   refGallery.insertAdjacentHTML("beforeend", markup);
 }
 createGallery();
-refGallery.addEventListener("click", makeLightbox);
+refGallery.addEventListener("click", makeLightbox, { once: true });
 function makeLightbox(event) {
   event.preventDefault();
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  const lightbox = new SimpleLightbox(".gallery a", { close: true });
-  document.addEventListener("keydown", closeLightbox);
-  function closeLightbox() {
-    lightbox.close();
-  }
-  // function onEscClose(event) {
-  //   if (event.code === "Escape") {
-  //     instance.close();
-  //     document.removeEventListener("keydown", onEscClose);
-  //   }
-  // }
-  // document.addEventListener("keydown", onEscClose);
+  let lightbox = new SimpleLightbox(".gallery a", {
+    captions: true,
+    captionSelector: "img",
+    captionType: "attr",
+    captionsData: "alt",
+    captionPosition: "bottom",
+    captionDelay: 250,
+  });
 }
