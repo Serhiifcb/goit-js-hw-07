@@ -28,14 +28,20 @@ function makeLightbox(event) {
   const instance = basicLightbox.create(
     `
       <img src="${event.target.dataset.source}">
-  `
+  `,
+    {
+      onShow: (instance) => {
+        document.addEventListener("keydown", onEscClose);
+      },
+      onClose: (instance) => {
+        document.removeEventListener("keydown", onEscClose);
+      },
+    }
   );
   instance.show();
-  function onEscClose(event) {
-    if (event.code === "Escape") {
+  function onEscClose(ev) {
+    if (ev.code === "Escape") {
       instance.close();
-      document.removeEventListener("keydown", onEscClose);
     }
   }
-  document.addEventListener("keydown", onEscClose);
 }
