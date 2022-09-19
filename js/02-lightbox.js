@@ -13,17 +13,25 @@ function createGallery() {
 }
 createGallery();
 refGallery.addEventListener("click", makeLightbox, { once: true });
+const lightbox = new SimpleLightbox(".gallery a", {
+  captions: true,
+  captionSelector: "img",
+  captionType: "attr",
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDelay: 250,
+});
 function makeLightbox(event) {
   event.preventDefault();
-  if (event.target.nodeName !== "IMG") {
-    return;
-  }
-  const lightbox = new SimpleLightbox(".gallery a", {
-    captions: true,
-    captionSelector: "img",
-    captionType: "attr",
-    captionsData: "alt",
-    captionPosition: "bottom",
-    captionDelay: 250,
-  });
+  // if (event.target.nodeName !== "IMG") {
+  //   return;
+  // }
+  // const lightbox = new SimpleLightbox(".gallery a", {
+  //   captions: true,
+  //   captionSelector: "img",
+  //   captionType: "attr",
+  //   captionsData: "alt",
+  //   captionPosition: "bottom",
+  //   captionDelay: 250,
+  // });
 }
